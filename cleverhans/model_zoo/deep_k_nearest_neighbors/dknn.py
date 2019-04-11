@@ -377,6 +377,7 @@ def dknn_tutorial():
         return data_activations
 
       # Use a holdout of the test set to simulate calibration data for the DkNN.
+      print("line 380")
       train_data = x_train
       train_labels = np.argmax(y_train, axis=1)
       cali_data = x_test[:FLAGS.nb_cali]
@@ -389,6 +390,7 @@ def dknn_tutorial():
       layers = ['ReLU1', 'ReLU3', 'ReLU5', 'logits']
 
       # Wrap the model into a DkNNModel
+      print(layers)
       dknn = DkNNModel(FLAGS.neighbors, layers, get_activations,
                        train_data, train_labels, nb_classes, scope='dknn')
       dknn.calibrate(cali_data, cali_labels)
